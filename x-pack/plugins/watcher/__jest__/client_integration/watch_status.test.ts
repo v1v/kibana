@@ -4,5 +4,8 @@
  * you may not use this file except in compliance with the Elastic License.
  */
 
-export { getRandomString } from './strings';
-export { nextTick, getRandomNumber } from './utils';
+describe('<WatchStatus />', () => {
+  describe('on component mount', () => {
+    // TODO implement
+  });
+});

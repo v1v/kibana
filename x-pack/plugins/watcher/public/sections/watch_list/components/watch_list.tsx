@@ -197,6 +197,7 @@ const WatchListUi = () => {
           }
           body={emptyPromptBody}
           actions={createWatchContextMenu}
+          data-test-subj="emptyPrompt"
         />
       </EuiPageContent>
     );
@@ -226,10 +227,10 @@ const WatchListUi = () => {
         sortable: true,
         truncateText: true,
         render: (id: string) => {
+          // TODO: Update data-test-subj for functional test
           return (
             <EuiLink
-              className="euiTableCellContent"
-              data-test-subj={`watchIdColumn-${id}`}
+              data-test-subj="watchLink"
               href={`#/management/elasticsearch/watcher/watches/watch/${id}/status`}
             >
               {id}
@@ -315,6 +316,7 @@ const WatchListUi = () => {
                     iconType="pencil"
                     color="primary"
                     href={`#/management/elasticsearch/watcher/watches/watch/${watch.id}/edit`}
+                    data-test-subj="editWatchButton"
                   />
                 </EuiToolTip>
               );
@@ -342,6 +344,7 @@ const WatchListUi = () => {
                     onClick={() => {
                       setWatchesToDelete([watch.id]);
                     }}
+                    data-test-subj="deleteWatchButton"
                   />
                 </EuiToolTip>
               );
@@ -407,6 +410,13 @@ const WatchListUi = () => {
             defaultMessage="No watches to show"
           />
         }
+        rowProps={() => ({
+          'data-test-subj': 'row',
+        })}
+        cellProps={() => ({
+          'data-test-subj': `cell`,
+        })}
+        data-test-subj="watchesTable"
       />
     );
   }
@@ -426,7 +436,7 @@ const WatchListUi = () => {
       <EuiTitle size="l">
         <EuiFlexGroup alignItems="center">
           <EuiFlexItem grow={true}>
-            <h1>
+            <h1 data-test-subj="appTitle">
               <FormattedMessage
                 id="xpack.watcher.sections.watchList.header"
                 defaultMessage="Watcher"
@@ -434,7 +444,12 @@ const WatchListUi = () => {
             </h1>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiButtonEmpty href={watcherGettingStartedUrl} target="_blank" iconType="help">
+            <EuiButtonEmpty
+              href={watcherGettingStartedUrl}
+              target="_blank"
+              iconType="help"
+              data-test-subj="documentationLink"
+            >
               <FormattedMessage
                 id="xpack.watcher.sections.watchList.watcherGettingStartedDocsLinkText"
                 defaultMessage="Watcher docs"

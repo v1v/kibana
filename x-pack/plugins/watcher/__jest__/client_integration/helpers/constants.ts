@@ -4,5 +4,8 @@
  * you may not use this file except in compliance with the Elastic License.
  */
 
-export { getRandomString } from './strings';
-export { nextTick, getRandomNumber } from './utils';
+import { getWatch } from '../../../test/fixtures';
+
+export const WATCH_ID = 'my-test-watch';
+
+export const WATCH_EDIT = getWatch({ id: WATCH_ID });
