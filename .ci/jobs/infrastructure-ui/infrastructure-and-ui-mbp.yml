@@ -9,7 +9,7 @@
     days-to-keep: '1'
     concurrent: true
     node: linux
-    script-path: .ci/infrastructure/Jenkinsfile
+    script-path: .ci/infrastructure-ui/Jenkinsfile
     scm:
     - github:
         branch-discovery: all
