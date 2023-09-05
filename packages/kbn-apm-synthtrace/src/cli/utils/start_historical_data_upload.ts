@@ -24,7 +24,7 @@ export async function startHistoricalDataUpload({
   from: Date;
   to: Date;
 }) {
-  const { logger, esUrl, version } = await bootstrap(runOptions);
+  const { logger, esUrl, version, esApiKey } = await bootstrap(runOptions);
 
   const cores = cpus().length;
 
@@ -90,6 +90,7 @@ export async function startHistoricalDataUpload({
         bucketTo,
         workerId: workerIndex.toString(),
         esUrl,
+        esApiKey,
         version,
       };
       const worker = new Worker(Path.join(__dirname, './worker.js'), {

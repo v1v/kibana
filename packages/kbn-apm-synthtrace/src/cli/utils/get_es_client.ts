@@ -16,14 +16,27 @@ export function getEsClient({
   logger,
   version,
   concurrency,
+  apikey,
 }: Pick<RunOptions, 'concurrency'> & {
   version: string;
   target: string;
+  apikey: string;
   logger: Logger;
 }) {
-  const client = new Client({
-    node: target,
-  });
+  var client;
+
+  if (apikey) {
+    client = new Client({
+      node: target,
+      auth: {
+        apiKey: apikey
+      }
+    });
+  } else {
+    client = new Client({
+      node: target,
+    });
+  }
 
   const apmEsClient = new ApmSynthtraceEsClient({
     client,

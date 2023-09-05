@@ -24,6 +24,10 @@ function options(y: Argv) {
       describe: 'Elasticsearch target',
       string: true,
     })
+    .option('apikey', {
+      describe: 'Elasticsearch Api Key (the Api Key will take precedence.)',
+      string: true,
+    })
     .option('kibana', {
       describe: 'Kibana target, used to bootstrap datastreams/mappings/templates/settings',
       string: true,

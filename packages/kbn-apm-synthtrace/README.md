@@ -116,6 +116,7 @@ The following options are supported:
 | Option              | Type     | Default | Description                                                                                |
 | ------------------- | -------- | :------ | ------------------------------------------------------------------------------------------ |
 | `--target`          | [string] |         | Elasticsearch target                                                                       |
+| `--apikey`          | [string] |         | Elasticsearch Api Key                                                                        |
 | `--kibana`          | [string] |         | Kibana target, used to bootstrap datastreams/mappings/templates/settings                   |
 | `--versionOverride` | [string] |         | String to be used for `observer.version`. Defauls to the version of the installed package. |
 

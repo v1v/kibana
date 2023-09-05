@@ -20,16 +20,18 @@ export interface WorkerData {
   runOptions: RunOptions;
   workerId: string;
   esUrl: string;
+  esApiKey: string;
   version: string;
 }
 
-const { bucketFrom, bucketTo, runOptions, esUrl, version } = workerData as WorkerData;
+const { bucketFrom, bucketTo, runOptions, esUrl, esApiKey, version } = workerData as WorkerData;
 
 async function start() {
   const logger = loggerProxy;
   const apmEsClient = getEsClient({
     concurrency: runOptions.concurrency,
     target: esUrl,
+    apikey: esApiKey,
     logger,
     version,
   });

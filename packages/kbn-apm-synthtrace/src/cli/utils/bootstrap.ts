@@ -14,8 +14,9 @@ import { RunOptions } from './parse_run_cli_flags';
 
 export async function bootstrap(runOptions: RunOptions) {
   const logger = createLogger(runOptions.logLevel);
+  const esApiKey = runOptions.apikey;
 
-  const { kibanaUrl, esUrl } = await getServiceUrls({ ...runOptions, logger });
+  const { kibanaUrl, esUrl} = await getServiceUrls({ ...runOptions, logger });
 
   const kibanaClient = getKibanaClient({
     target: kibanaUrl,
@@ -31,6 +32,7 @@ export async function bootstrap(runOptions: RunOptions) {
     logger,
     concurrency: runOptions.concurrency,
     version,
+    apikey: esApiKey,
   });
 
   await kibanaClient.installApmPackage(latestPackageVersion);
@@ -43,6 +45,7 @@ export async function bootstrap(runOptions: RunOptions) {
     logger,
     apmEsClient,
     version,
+    esApiKey,
     kibanaUrl,
     esUrl,
   };
